@@ -30,9 +30,11 @@ void	print_stacks(t_stack *a, t_stack *b)
 
 	i = a->top;
 	j = b->top;
-	while (i >= 0)
+	while (i >= 0 || j >= 0)
 	{
-		ft_printf("%d  ", a->items[i]);
+		if (i >= 0)
+			ft_printf("%d", a->items[i]);
+		ft_printf("    ");
 		if (j >= 0)
 		{
 			ft_printf("%d", b->items[j]);
@@ -61,9 +63,14 @@ int	main(int argc, char *argv[])
 		return(-1);
 	while (check_order(&stack_a, 'a') == -1)
 	{
-		check_order_error(&stack_a, &stack_b);
+		check_order_error_a(&stack_a, &stack_b);
 		//ft_printf("a\n");
 		print_stacks(&stack_a, &stack_b);
+		if (check_order(&stack_b, 'b') == -1)
+		{
+			check_order_error_b(&stack_a, &stack_b);
+			print_stacks(&stack_a, &stack_b);
+		}
 		//ft_printf("\nb\n");
 		//print_stack(&stack_b);
 		count++;
@@ -71,9 +78,21 @@ int	main(int argc, char *argv[])
 	//if (check_order(&stack_a, 'b') == -1)
 	while (stack_b.top >= 0)
 	{
+		/* if (check_order(&stack_b, 'b') == -1)
+		{
+			check_order_error_b(&stack_a, &stack_b);
+			print_stacks(&stack_a, &stack_b);
+		} */
 		pa(&stack_a, &stack_b);
+		/* if (check_order(&stack_a, 'a') == -1)
+		{
+			check_order_error(&stack_a, &stack_b);
+			print_stacks(&stack_a, &stack_b);
+			count++;
+		} */
 		count++;
 	}
+	
 	check_order(&stack_a, 'a');
 	print_stack(&stack_a);
 	//FREE STACK B

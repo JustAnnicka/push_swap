@@ -22,11 +22,18 @@ void    ra(t_stack *stack_a);
 void    rra(t_stack *stack_a);
 
 // STACK_B FUNCTIONS
+void    sb(t_stack *stack_b);
 void    pb(t_stack *stack_a, t_stack *stack_b);
+void    rb(t_stack *stack_b);
+void    rrb(t_stack *stack_b);
+
+// STACK_A & STACK_B FUNCTIONS
+void	ss(t_stack *stack_a, t_stack *stack_b);
 
 // CHECK FUNCTIONS
 int     check_order(t_stack *x, char stack);
-void    check_order_error(t_stack *stack_a, t_stack *stack_b);
+void    check_order_error_a(t_stack *stack_a, t_stack *stack_b);
+void    check_order_error_b(t_stack *stack_a, t_stack *stack_b);
 int     check_duplicates(t_stack *stack_a);
 
 // UTILS FUNCTION

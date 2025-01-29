@@ -6,7 +6,7 @@
 /*   By: aehrl <aehrl@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:58:24 by aehrl             #+#    #+#             */
-/*   Updated: 2025/01/14 00:41:50 by aehrl            ###   ########.fr       */
+/*   Updated: 2025/01/14 20:05:47 by aehrl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int check_order(t_stack *x, char stack)
 		i = 0;
 		while (i + 1 <= x->top)
 		{
-			if (x->items[i] < x->items[i + 1])
+			if (x->items[i] > x->items[i + 1])
 				return (ft_printf("wrong order\n"), -1);
 			i++;
 		}

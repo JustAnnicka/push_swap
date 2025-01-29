@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror -DM
 
 NAME = push_swap
 SRC_DIR = src
-SRC = main.c utils.c order.c a.c b.c  #ab.c 
+SRC = main.c utils.c order.c a.c b.c ab.c 
 BUILD_DIR = build
 INCLUDE_DIR = includes
 INCLUDES = -I./$(INCLUDE_DIR)
