@@ -29,9 +29,14 @@ void    rrb(t_stack *stack_b);
 
 // STACK_A & STACK_B FUNCTIONS
 void	ss(t_stack *stack_a, t_stack *stack_b);
+void	rr(t_stack *stack_a, t_stack *stack_b);
+void	rrr(t_stack *stack_a, t_stack *stack_b);
+
 
 // CHECK FUNCTIONS
-int     check_order(t_stack *x, char stack);
+int     check_order(t_stack *x);
+void    order(t_stack *a, t_stack *b, int error);
+void    refill_stack_a(t_stack *a, t_stack *b);
 void    check_order_error_a(t_stack *stack_a, t_stack *stack_b);
 void    check_order_error_b(t_stack *stack_a, t_stack *stack_b);
 int     check_duplicates(t_stack *stack_a);

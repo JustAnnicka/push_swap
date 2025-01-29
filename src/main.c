@@ -43,7 +43,7 @@ void	print_stacks(t_stack *a, t_stack *b)
 		i--;
 		ft_printf("\n");
 	}
-	ft_printf("-  -\na  b\n");
+	ft_printf("-    -\na    b\n");
 }
 
 int	main(int argc, char *argv[])
@@ -51,6 +51,7 @@ int	main(int argc, char *argv[])
 	t_stack stack_a;
 	t_stack stack_b;
 	int	count;
+	int	e;
 
 	count = 0;
 	if (argc < 2)
@@ -61,45 +62,22 @@ int	main(int argc, char *argv[])
 	fill_stack_a(&stack_a, argv);
 	if (check_duplicates(&stack_a) == -1)
 		return(-1);
-	while (check_order(&stack_a, 'a') == -1)
+	e = check_order(&stack_a);
+	while (e != 0)
 	{
-		check_order_error_a(&stack_a, &stack_b);
-		//ft_printf("a\n");
 		print_stacks(&stack_a, &stack_b);
-		if (check_order(&stack_b, 'b') == -1)
-		{
-			check_order_error_b(&stack_a, &stack_b);
-			print_stacks(&stack_a, &stack_b);
-		}
-		//ft_printf("\nb\n");
-		//print_stack(&stack_b);
+		order(&stack_a, &stack_b, e);
+		e = check_order(&stack_a);
+		if (e == 0 && stack_a.top != stack_a.maxsize)
+			e = -1;
 		count++;
 	}
-	//if (check_order(&stack_a, 'b') == -1)
-	while (stack_b.top >= 0)
-	{
-		/* if (check_order(&stack_b, 'b') == -1)
-		{
-			check_order_error_b(&stack_a, &stack_b);
-			print_stacks(&stack_a, &stack_b);
-		} */
-		pa(&stack_a, &stack_b);
-		/* if (check_order(&stack_a, 'a') == -1)
-		{
-			check_order_error(&stack_a, &stack_b);
-			print_stacks(&stack_a, &stack_b);
-			count++;
-		} */
-		count++;
-	}
-	
-	check_order(&stack_a, 'a');
+	check_order(&stack_a);
 	print_stack(&stack_a);
 	//FREE STACK B
 //	ft_printf("max:%d top: %d\n", stack_a.maxsize, stack_a.top);
 	ft_printf("count: %d\n", count);
 	ft_printf("EXIT");
-	
 }
 
 /* int main() {

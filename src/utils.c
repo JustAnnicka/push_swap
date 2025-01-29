@@ -6,7 +6,7 @@
 /*   By: aehrl <aehrl@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:58:24 by aehrl             #+#    #+#             */
-/*   Updated: 2025/01/14 20:05:47 by aehrl            ###   ########.fr       */
+/*   Updated: 2025/01/29 19:09:53 by aehrl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,30 +64,22 @@ void fill_stack_a(t_stack *a, char **input)
 	return (0);
 }
 
-int check_order(t_stack *x, char stack)
+int check_order(t_stack *x)
 {
 	int	i;
+	int	e;
 
-	if (stack == 'a')
+	e = 0;
+	i = x->top;
+	while (i - 1 >= 0)
 	{
-		i = x->top;
-		while (i - 1 >= 0)
-		{
-			if (x->items[i] > x->items[i - 1])
-				return (-1);
-			i--;
-		}
+		if (x->items[i] > x->items[i - 1])
+			e++;
+		i--;
 	}
+	if (e == 0)
+		ft_printf("correct order\n");
 	else
-	{
-		i = 0;
-		while (i + 1 <= x->top)
-		{
-			if (x->items[i] > x->items[i + 1])
-				return (ft_printf("wrong order\n"), -1);
-			i++;
-		}
-	}
-	ft_printf("correct order\n");
-	return (0);
+		ft_printf("wrong order - errors: %d\n", e);
+	return (e);
 }
