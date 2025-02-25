@@ -6,7 +6,7 @@
 /*   By: aehrl <aehrl@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 18:38:35 by aehrl             #+#    #+#             */
-/*   Updated: 2025/01/29 20:13:50 by aehrl            ###   ########.fr       */
+/*   Updated: 2025/01/30 16:42:45 by aehrl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,27 @@ void refill_stack_a(t_stack *a, t_stack *b)
 
 	if (!count) 
 		count = a->top; */
-	if(b->items[b->top] > a->items[a->top])
-	{
-		while (b->items[b->top] < a->items[0])
-			rra(a);
-		if (a->top != a->maxsize)
-			refill_stack_a(a, b);
-	}
 	if (b->items[b->top] < b->items[0])
 		rrb(b);
 	if (b->items[0] > b->items[b->top])
 		rr(a, b);
 	else if (b->items[b->top] < b->items[b->top -1])
 		sb(b);
-	while (b->items[b->top] < a->items[a->top])
-		pa(a, b);
+	if(b->items[b->top] > a->items[a->top])
+	{
+		while (b->items[b->top] < a->items[0])
+			rra(a);
+		while (b->items[b->top] < a->items[a->top] && b->items[b->top] > a->items[0])
+			pa(a, b);
+	}
+	else if(a->top != a->maxsize)
+		refill_stack_a(a, b);
+	/* else if (b->items[b->top] < a->items[a->top] )
+		pa(a, b); */
 	/* else if(b->items[b->top] > a->items[a->top])
 	{
 		while (b->items[b->top] < a->items[0])
-		{
+		{ss
 			count--;
 			rra(a);
 		}
@@ -58,8 +60,10 @@ void order(t_stack *a, t_stack *b, int error)
 {
 	/* if (a->items[a->top] > a->items[0])
 		rra(a); */
-	if (a->items[a->top] > a->items[0])
+	if (a->items[a->top] > a->items[0] && a->items[a->top] > a->items[a->top - 1])
 		ra(a);
+	else if (a->items[a->top] > a->items[0] && a->items[a->top - 1] > a->items[0])
+		rra(a);
 	else if (a->items[a->top] > a->items[a->top - 1] && error == 1)
 		sa(a);
 	else if (error != -1)

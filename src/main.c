@@ -9,8 +9,11 @@ must be able to sort for  500 random numbers, there should be no more than 5500 
 
 //POSSIBLE ERROR:
 // -> arguments are not integers
-// -> some arguments are bigger than intefers
+// -> some arguments are bigger than integers
+// -> some arguments are smaller than integers
 // -> integers are duplicates
+
+// Need to be able to take multiple arguments of numbers for a stack 
 
 void	print_stack(t_stack *stack)
 {
