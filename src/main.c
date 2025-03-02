@@ -26,6 +26,25 @@ void	print_stack(t_stack *stack)
 		i--;
 	}
 }
+
+/* void	print_stack(t_stack *stack)
+{
+	int	t;
+	int t_1;
+	int b;
+
+	t = stack->top;
+	t_1 = stack->top - 1;
+	b = 0;
+
+	if (t >= 1)
+		ft_printf("%d\n", stack->items[t]);
+	if (t > 1)
+		ft_printf("%d\n", stack->items[t_1]);
+	ft_printf("|\n|\n");
+	ft_printf("%d\n", stack->items[b]);
+} */
+
 void	print_stacks(t_stack *a, t_stack *b)
 {
 	int	i;
@@ -48,6 +67,39 @@ void	print_stacks(t_stack *a, t_stack *b)
 	}
 	ft_printf("-    -\na    b\n");
 }
+/* void	print_stacks(t_stack *a, t_stack *b)
+{
+
+	int	t;
+	int t_1;
+	int	bt;
+	int bt_1;
+
+	t = a->top;
+	t_1 = a->top - 1;
+	bt = b->top;
+	bt_1 = b->top - 1;
+
+	if (t >= 1)
+		ft_printf("%d", a->items[t]);
+	if (bt >= 1)
+		ft_printf("    %d\n", b->items[bt]);
+	else
+		ft_printf("\n");
+	if (t > 1)
+		ft_printf("%d ", a->items[t_1]);
+	if (bt > 1)
+		ft_printf("    %d\n", b->items[bt_1]);
+	else
+		ft_printf("\n");
+	ft_printf("|    |\n|    |\n");
+	ft_printf("%d ", a->items[0]);
+	if (b->top >= 0)
+		ft_printf("%d\n", b->items[0]);
+	else
+	ft_printf("\n");
+	ft_printf("-    -\na    b\n");
+} */
 
 int	main(int argc, char *argv[])
 {
@@ -70,9 +122,12 @@ int	main(int argc, char *argv[])
 	{
 		print_stacks(&stack_a, &stack_b);
 		order(&stack_a, &stack_b, e);
-		e = check_order(&stack_a);
+		if (e != -1)
+			e = check_order(&stack_a);
 		if (e == 0 && stack_a.top != stack_a.maxsize)
 			e = -1;
+		if (e == -1 && stack_a.top == stack_a.maxsize)
+			break ;
 		count++;
 	}
 	check_order(&stack_a);
