@@ -6,7 +6,7 @@
 /*   By: aehrl <aehrl@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:58:24 by aehrl             #+#    #+#             */
-/*   Updated: 2025/01/29 19:09:53 by aehrl            ###   ########.fr       */
+/*   Updated: 2025/03/04 21:39:45 by aehrl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,17 @@ int check_order(t_stack *x)
 
 	e = 0;
 	i = x->top;
+	if (i != 0 && x->items[i] > x->items[0])
+		e++;
 	while (i - 1 >= 0)
 	{
 		if (x->items[i] > x->items[i - 1])
 			e++;
 		i--;
 	}
-	if (e == 0)
+	if (e == 0 && x->top != x->maxsize)
+		e = -1;
+	else if (e == 0)
 		ft_printf("correct order\n");
 	else
 		ft_printf("wrong order - errors: %d\n", e);

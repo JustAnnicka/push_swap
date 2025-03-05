@@ -45,7 +45,7 @@ void	print_stack(t_stack *stack)
 	ft_printf("%d\n", stack->items[b]);
 } */
 
-void	print_stacks(t_stack *a, t_stack *b)
+/* void	print_stacks(t_stack *a, t_stack *b)
 {
 	int	i;
 	int j;
@@ -66,8 +66,8 @@ void	print_stacks(t_stack *a, t_stack *b)
 		ft_printf("\n");
 	}
 	ft_printf("-    -\na    b\n");
-}
-/* void	print_stacks(t_stack *a, t_stack *b)
+} */
+void	print_stacks(t_stack *a, t_stack *b)
 {
 
 	int	t;
@@ -99,7 +99,28 @@ void	print_stacks(t_stack *a, t_stack *b)
 	else
 	ft_printf("\n");
 	ft_printf("-    -\na    b\n");
-} */
+}
+
+int do_order(t_stack *a, t_stack *b, int e)
+{
+	static int count;
+	static int last_action;
+
+	if (e != 0)
+	{
+		//print_stacks(a, b);
+		if (e > 0)
+			last_action = order(a, b, e, last_action);
+		/* if (e != -1)
+			e = check_order(a); */
+		else if (e == -1)
+			last_action = refill_stack_a(a, b, last_action);
+		if (e == -1 && a->top == a->maxsize)
+			return (count);
+		count++;
+	}
+	return (count);
+}
 
 int	main(int argc, char *argv[])
 {
@@ -120,15 +141,19 @@ int	main(int argc, char *argv[])
 	e = check_order(&stack_a);
 	while (e != 0)
 	{
+		if (e != -1 || stack_b.top == -1)
+			e = check_order(&stack_a);
 		print_stacks(&stack_a, &stack_b);
-		order(&stack_a, &stack_b, e);
+		count = do_order(&stack_a, &stack_b, e) + 1;
+		ft_printf("errors %d\n", e);
+		/*order(&stack_a, &stack_b, e);
 		if (e != -1)
 			e = check_order(&stack_a);
 		if (e == 0 && stack_a.top != stack_a.maxsize)
 			e = -1;
 		if (e == -1 && stack_a.top == stack_a.maxsize)
-			break ;
-		count++;
+			break ; 
+		count++;*/
 	}
 	check_order(&stack_a);
 	print_stack(&stack_a);

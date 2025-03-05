@@ -35,8 +35,8 @@ void	rrr(t_stack *stack_a, t_stack *stack_b);
 
 // CHECK FUNCTIONS
 int     check_order(t_stack *x);
-void    order(t_stack *a, t_stack *b, int error);
-void    refill_stack_a(t_stack *a, t_stack *b);
+int     order(t_stack *a, t_stack *b, int error, int la);
+int    refill_stack_a(t_stack *a, t_stack *b, int la);
 void    check_order_error_a(t_stack *stack_a, t_stack *stack_b);
 void    check_order_error_b(t_stack *stack_a, t_stack *stack_b);
 int     check_duplicates(t_stack *stack_a);
@@ -44,6 +44,7 @@ int     check_duplicates(t_stack *stack_a);
 // UTILS FUNCTION
 int     ft_error(void);
 void	print_stack(t_stack *stack);
+int	    error_location(t_stack *x);
 t_stack init_stack(t_stack *s, int max);
 
 #endif // PUSH_SWAP_H
